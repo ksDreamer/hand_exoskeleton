@@ -16,13 +16,18 @@ A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.
 
 ```git clone https://github.com/ksDreamer/hand_exoskeleton.git```
 
-2. 机械相关资源在mechanics文件夹里，需要修改就自行修改。完成后导出.3mf/.stl等3D打印格式文件，用切片软件处理后进行3D打印。可参考作者之前写的3D打印教程：[3D 打印机_拓竹 X1Carbon_操作指南](https://zhuanlan.zhihu.com/p/644491008)
-3. 电控和软件相关资源在program文件夹里。需要完整下载ServoDriver文件夹。
-4. 配置ESP32的Arduino开发环境：跟着微雪的[Servo Driver with ESP32用户手册](https://www.waveshare.net/w/upload/d/d6/Servo-Driver-with-ESP32-user-manual-cn.pdf)操作。重要的就是选择Board：ESP32 Dev Module。选择串口（不同不一定相同），注意Mac电脑的串口不叫COM，通常叫usbserial-0001
-5. 连上ESP32和舵机后，用Type-C口烧录程序。保持供电。
-6. 现在你可以在电脑/手机/平板等智能设备的Wi-Fi列表看到“ESP32_KevinStark"，密码是"88888888"（这些都是你可以自己设置的！），连接后就可以通过局域网访问ESP32 的IP 打开Web前端控制界面了。IP地址通常是[192.168.4.1](192.168.4.1)。（ESP32支持蓝牙、Wi-Fi、ESP-NOW三种通信方式，ESP-NOW可以做机械手的示教，有空再细写相关内容教程TD）
-7. 设置舵机ID。因为买来新舵机默认ID都是1，所以需要给多个舵机分配不同的ID。通过Web界面的```ID Select+, ID Select-, ID to Set+, ID to Set-```四个按钮，或者手动烧程序来依次设置舵机ID。本项目的ID分配信息如下：大拇指从左往右1、2、3。四指从食指开始为4，小尾指为7。
-8. 开始玩耍。
+2. 机械模型相关资源在mechanics文件夹里，需要修改就自行修改。完成后导出零件的.3mf/.stl等3D打印格式文件，用切片软件处理后进行3D打印。可参考作者之前写的3D打印教程：[3D 打印机_拓竹 X1Carbon_操作指南](https://zhuanlan.zhihu.com/p/644491008)
+3. 建议3D打印或者发加工时分模块，例如四指的连杆结构尽量安排临近时间单独打印，拇指的线驱结构也单独打印，避免零件太多混乱不清楚哪个用在哪里。（有空会整理上传.3mf格式，以及组装细节TD）
+4. 线驱的安装方式请查看上面的正视图(model_overview.jpg)，有一根线要横穿过四指连杆结构的，因为要从这个方向提供拉力。
+5. 电控和软件相关资源在program文件夹里。需要完整下载ServoDriver文件夹。
+6. 配置ESP32的Arduino开发环境：跟着微雪的[Servo Driver with ESP32用户手册](https://www.waveshare.net/w/upload/d/d6/Servo-Driver-with-ESP32-user-manual-cn.pdf)操作。重要的就是选择Board：ESP32 Dev Module。选择串口（不同电脑的串口号不一定相同），注意Mac电脑的串口不叫COM，通常叫usbserial-0001
+7. 连上ESP32和舵机后，用Type-C口烧录程序。保持供电。
+8. 现在你可以在电脑/手机/平板等智能设备的Wi-Fi列表看到“ESP32_KevinStark"，密码是"88888888"（这些都是你可以自己设置的！），连接后就可以通过局域网访问ESP32 的IP 打开Web前端控制界面了。IP地址通常是[192.168.4.1](192.168.4.1)。（ESP32支持蓝牙、Wi-Fi、ESP-NOW三种通信方式，ESP-NOW可以做机械手的示教，有空再细写相关内容教程TD）
+9. 设置舵机ID。因为买来新舵机默认ID都是1，所以需要给多个舵机分配不同的ID。通过Web界面的```ID Select+, ID Select-, ID to Set+, ID to Set-```四个按钮，或者手动烧程序来依次设置舵机ID。本项目的ID分配信息如下：大拇指从左往右1、2、3。四指从食指开始为4，小尾指为7。
+10. 机械结构安装完成、电控软件准备完毕后，通常来说不能直接运行。因为每个人的安装时的机械调零、铜柱给进量等等可能不一样。建议用串口调试的方法慢慢测试适合的角度。
+11. 开始玩耍。
+
+TD：
 
 用Web前端交互可能会出现点击一次触发3下动作的问题，暂时不清楚为何。是多个事件监视器对上一个窗口？还是什么原因。
 
@@ -43,7 +48,7 @@ A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.
   * 供电
     * 查询[微雪ESP32的文档](https://www.waveshare.net/wiki/Servo_Driver_with_ESP32)可得知其工作电压为6-12V，接口为5.5*2.1mm DC。因此我们需要：
     * 支持DC6-12V供电的5521DC口电源
-    * 或者2-3节18650电池串联（3.7v）5.5*2.1mm +5521DC转接头+电池座（后面有附制作过程）
+    * 或者2-3节18650电池串联（3.7v）5.5*2.1mm +5521DC转接头+电池座（之后制作电池座的图文攻略TD，其实就是前面这些东西，注意细节：为了绝缘安全可以加上电工绝缘胶带、热塑管之类的，为了避免多次插拔可以接一个电源开关。但一定要注意安全！没有经验的建议上面那个选项，网购一个适合的适配器电源。）
   * 电线和锡丝若干
   * 电焊台
   * （可选）热风枪、热塑管、电源开关、
@@ -60,7 +65,7 @@ A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.
 
 ### 基本信息
 
-连杆与线驱结合控制。
+**连杆**与**线驱**结合控制。
 
 重量：大拇指外骨骼174g，四指外骨骼226g，总重大约400g。（含舵机和各种零件耗材，不含手模型和电源）
 
@@ -226,7 +231,7 @@ WEBPAGE.h 是对Web前端界面的开发。本质是HTML+JavaScript+CSS。
 
 Mechanics：
 
-CJY, ZJR
+CJY, [ZJR](https://github.com/peterstark1900)
 
 Electronics：
 
