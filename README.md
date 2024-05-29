@@ -8,7 +8,7 @@ A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.
 
 ![model_overview](./images/model_overview.jpg)
 
-![model_overview2](./images/model_overview2-6993792.jpg)
+![model_overview2](./images/model_overview2.jpg)
 
 ## Getting Start 复现教程
 
@@ -187,6 +187,55 @@ WEBPAGE.h 是对Web前端界面的开发。本质是HTML+JavaScript+CSS。
 
 电池+焊接一整套大概在30元以内，3D打印应该是30元以内（仅外骨骼最终版 不含手 不含迭代版本，按照0.2元/克PLA价格）
 
-以上算起来差不多500块。
+也就是说，要实现这个项目，在手头有电焊和机械工具的情况下，500元左右能搞定。
 
-也就是说，要实现我们这个项目，在手头有电焊和机械工具的情况下，500元左右能搞定。
+## 总结和未来计划
+
+因为成本的考虑，这个项目成品的运动精度一般，能指定角度，但精确到0.01度就不可能。有条件的话，会选择更高精度的驱动方案，例如步进电机、无刷直流等等。另外也没有力反馈和传感等功能。
+
+这些在各个子领域都有相对成熟的方案了。因此做集成的难度不会很大。
+
+这个项目发展下去，想探索的一个大方向是灵巧手。
+
+* 待添加功能：
+  * 主从示教（ESP-NOW通信，机械结构优化减小死区）
+  * 摄像头手势识别（match case 已实现，待整理开源。精确随动还要再研究）
+  * 人机交互的优化，例如语音识别输入（STT），语音喇叭模块，网页前端美化（CSS），添加用户开机引导步骤等等。
+  * 力反馈和柔性接触抓握。
+  * 大语言模型做动作规划（LLM+RAG）
+  * 强化学习抓握训练。灵巧手抓取泛化性研究。灵巧手数据生成自监督学习研究。
+
+## 致谢
+
+谢谢[Khlann](https://github.com/Khlann)和[cyatar](https://github.com/cyatar)，你们是我在初入嵌入式领域时的老师。
+
+谢谢lvWei指导我焊接并分享技巧。
+
+谢谢RobotIC机器人实验室提供了制作过程所需的部分耗材和工具。
+
+### Reference
+
+1. Marcin Bonikowski, Mikulás Hajduk, Lucia Koukolova, Wojciech J. Klimasara, Patrycja Mrozek, and Zbigniew Pilat. New trends in the use of robotic devices in motor rehabilitation of upper limbs. In Automation, 2016.
+2. Anirban Chowdhury, Shyam Sunder Nishad, Yogesh Kumar Meena, Ashish Dutta, and Girijesh Prasad. Hand-exoskeleton assisted progressive neurorehabilitation using impedance adaptation based challenge level adjustment method. IEEE Transactions on Haptics, 12:128–140, 2019.
+3. FeiyunXiao,LiangGu,WenzhangMa,YanheZhu,ZhenZhang,andYongWang.Realtimemotion intention recognition method with limited number of surface electromyography sensors for a 7-dof hand/wrist rehabilitation exoskeleton. Mechatronics, 79:102642, 2021.
+4. Phillip Tran, Seokhwan Jeong, Steven L. Wolf, and Jaydev P. Desai. Patient-specific, voice- controlled, robotic flexotendon glove-ii system for spinal cord injury. IEEE Robotics and Automation Letters, 5:898–905, 2020.
+5. https://www.waveshare.net/wiki/Servo_Driver_with_ESP32 
+6. https://www.waveshare.net/wiki/SC09_Servo
+
+### Contributor
+
+Mechanics：
+
+CJY, ZJR
+
+Electronics：
+
+[Kevin Stark](https://github.com/ksDreamer), [Khlann](https://github.com/Khlann)
+
+Software:
+
+[Kevin Stark](https://github.com/ksDreamer)
+
+Report and other work:
+
+ZY, LXH, [Kevin Stark](https://github.com/ksDreamer)
