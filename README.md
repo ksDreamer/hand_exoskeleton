@@ -2,9 +2,7 @@
 
 To be continued
 
-20240526
-
-
+20240529
 
 A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.   
 
@@ -17,7 +15,7 @@ A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.
   * 鱼眼轴承 * 8
   * M2和M3规格的螺丝和螺母若干
   * 铜柱（规格TD）
-  * 线
+  * 线 0.8mm 淘宝链接：[304不锈钢钢丝绳 晾衣绳遮阳网包塑钢丝绳 细软小包胶钢丝绳 0.8mm](https://detail.tmall.com/item.htm?id=727898238439&price=2.25-59.94&short_name=h.g3fgrSYf6gOjNsf&spm=a2159r.13376460.0.0)
   * 3D打印材料（例如PLA）和3D打印机（自备或外包）
 * 电子相关
   * ESP32 微控制器 *1
@@ -57,3 +55,6 @@ WEBPAGE.h 是对web前端界面的开发。例如可以在里面找到Open Hand 
 
 * v0.4 增加大拇指控制方案，先relaxThumb让1和3号舵机的线松驰，再移动；封装了很多函数，增强可维护性；增加了很多动作方案。
 
+* v0.5 优化代码结构，封装函数。大拇指稳定，先张开再收紧。增加动作方案例如四指和大拇指的联动，play game 石头剪刀布。整理Web前端布局。于ServoDriver.ino增加串口调试程序，可接收"[ID] [Position] [Speed]"格式的单舵机转动命令，还有"[caseNumber]"格式的动作方案。
+
+* v1.0 增加三种Speed的选择 100 700 1500 对应case 45 46 47，只改变四指运行速度。简化前端界面。
