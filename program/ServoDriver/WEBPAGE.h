@@ -108,10 +108,12 @@ const char index_html[] PROGMEM = R"rawliteral(
         <label align="center"><button class="button" onclick="toggleCheckbox(1, 45, 0, 0);">45 Speed Set to 100</button></label>
         <label align="center"><button class="button" onclick="toggleCheckbox(1, 46, 0, 0);">46 Speed Set to 700</button></label>
         <label align="center"><button class="button" onclick="toggleCheckbox(1, 47, 0, 0);">47 Speed Set to 1500</button></label>
-    <!--
     <p>
         <label align="center"><button class="button" onclick="toggleCheckbox(0, 1, 0, 0);">ID Select+</button></label>
         <label align="center"><button class="button" onclick="toggleCheckbox(0, -1, 0, 0);">ID Select-</button></label>
+        <label align="center"><button class="button" onclick="toggleCheckbox(1, 9, 0, 0);">ID to Set+</button></label>
+        <label align="center"><button class="button" onclick="toggleCheckbox(1, 10, 0, 0);">ID to Set-</button></label>
+    <!--
     <p>
         <label align="center"><button class="button" onclick="toggleCheckbox(1, 1, 0, 0);">Middle</button></label>
         <label align="center"><button class="button" onclick="toggleCheckbox(1, 2, 0, 0);">Stop</button></label>
@@ -123,9 +125,7 @@ const char index_html[] PROGMEM = R"rawliteral(
     <p>
         <label align="center"><button class="button" onclick="toggleCheckbox(1, 7, 0, 0);">Speed+</button></label>
         <label align="center"><button class="button" onclick="toggleCheckbox(1, 8, 0, 0);">Speed-</button></label>
-    <p>
-        <label align="center"><button class="button" onclick="toggleCheckbox(1, 9, 0, 0);">ID to Set+</button></label>
-        <label align="center"><button class="button" onclick="toggleCheckbox(1, 10, 0, 0);">ID to Set-</button></label>
+    
     <p>
         <label align="center"><button class="button" onclick="setMiddle();">Set Middle Position</button></label>
         <label align="center"><button class="button" onclick="setNewID();">Set New ID</button></label>
