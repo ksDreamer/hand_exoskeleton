@@ -6,6 +6,10 @@ A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.
 
 低成本手部外骨骼，连杆驱动四指，线驱模拟肌腱机制驱动大拇指，ESP32主控，使用SC09总线舵机。
 
+![model_overview](./images/model_overview.jpg)
+
+![model_overview2](./images/model_overview2-6993792.jpg)
+
 ## Getting Start 复现教程
 
 1. 克隆仓库到本地，下载相关资源
@@ -15,19 +19,26 @@ A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.
 2. 机械相关资源在mechanics文件夹里，需要修改就自行修改。完成后导出.3mf/.stl等3D打印格式文件，用切片软件处理后进行3D打印。可参考作者之前写的3D打印教程：[3D 打印机_拓竹 X1Carbon_操作指南](https://zhuanlan.zhihu.com/p/644491008)
 3. 电控和软件相关资源在program文件夹里。需要完整下载ServoDriver文件夹。
 4. 配置ESP32的Arduino开发环境：跟着微雪的[Servo Driver with ESP32用户手册](https://www.waveshare.net/w/upload/d/d6/Servo-Driver-with-ESP32-user-manual-cn.pdf)操作。重要的就是选择Board：ESP32 Dev Module。选择串口（不同不一定相同），注意Mac电脑的串口不叫COM，通常叫usbserial-0001
-5. 连上ESP32和舵机后，通过Web界面的```ID Select+, ID Select-, ID to Set+, ID to Set-```四个按钮，或者手动烧程序来依次设置舵机ID。本项目的ID分配信息如下：大拇指从左往右1、2、3。四指从食指开始为4，小尾指为7。
+5. 连上ESP32和舵机后，用Type-C口烧录程序。保持供电。
+6. 现在你可以在电脑/手机/平板等智能设备的Wi-Fi列表看到“ESP32_KevinStark"，密码是"88888888"（这些都是你可以自己设置的！），连接后就可以通过局域网访问ESP32 的IP 打开Web前端控制界面了。IP地址通常是[192.168.4.1](192.168.4.1)。（ESP32支持蓝牙、Wi-Fi、ESP-NOW三种通信方式，ESP-NOW可以做机械手的示教，有空再细写相关内容教程TD）
+7. 设置舵机ID。因为买来新舵机默认ID都是1，所以需要给多个舵机分配不同的ID。通过Web界面的```ID Select+, ID Select-, ID to Set+, ID to Set-```四个按钮，或者手动烧程序来依次设置舵机ID。本项目的ID分配信息如下：大拇指从左往右1、2、3。四指从食指开始为4，小尾指为7。
+8. 开始玩耍。
+
+用Web前端交互可能会出现点击一次触发3下动作的问题，暂时不清楚为何。是多个事件监视器对上一个窗口？还是什么原因。
+
+为稳妥，推荐在问题没找到和解决前用串口控制。
 
 ## Material 材料
 
 * 机械相关
-  * SC09 总线舵机 * 7 [微雪 SC09串行总线舵机300度转动角度金属齿轮舵机电机双模式切换](https://detail.tmall.com/item.htm?id=714639378997)
-  * 鱼眼轴承 M3 * 8 [气缸鱼眼接头关节轴承向心万向杆端球头SI内丝SA外螺纹连接杆拉杆](https://item.taobao.com/item.htm?id=725305319897)
+  * SC09 总线舵机 * 7 
+  * 鱼眼轴承 M3 * 8 
   * M2和M3规格的螺丝和螺母若干，六角螺丝刀，十字螺丝刀。
   * 六角铜柱 *4（内径3.2mm，长度20-38mm不定，与鱼眼轴承给进配合和软件角度配合）
-  * 线 0.8mm [304不锈钢钢丝绳 晾衣绳遮阳网包塑钢丝绳 细软小包胶钢丝绳 0.8mm](https://detail.tmall.com/item.htm?id=727898238439)
+  * 线 0.8mm 
   * 3D打印（可考虑PLA耗材）
 * 电子相关
-  * ESP32 微控制器 *1 [微雪 ESP32舵机驱动扩展板 wifi远程控制 蓝牙通信 支持253个舵机](https://detail.tmall.com/item.htm?id=667483395387)
+  * ESP32 微控制器 *1 
   * 信号线和串线板（如果采用本项目列出的材料商家，会在每一份舵机包裹里配套这两个）
   * 供电
     * 查询[微雪ESP32的文档](https://www.waveshare.net/wiki/Servo_Driver_with_ESP32)可得知其工作电压为6-12V，接口为5.5*2.1mm DC。因此我们需要：
@@ -42,6 +53,10 @@ A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.
   * 使用：任一能连接Wi-Fi且具有图形化窗口的设备
 
 ## Mechanics 机械介绍
+
+![model_simulation](./images/model_simulation.jpg)
+
+![model_simulation2](./images/model_simulation2.jpg)
 
 ### 基本信息
 
@@ -58,6 +73,8 @@ A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.
 四指穿戴方便，直接往手上套。大拇指需要套环和拉线，会复杂一点。
 
 ### 四指——连杆
+
+![model_finger_equipment](./images/model_finger_equipment.jpg)
 
 传动部分通过**曲柄连杆**与**鱼眼轴承**将水平面内的运动转化为手指的竖直运动，并限制摇杆的行程，保证安全性；
 执行部分每根手指采用八根连杆的系统控制，考虑到MCP关节两侧没有地方穿戴外骨骼，故通过两个平行四边形四连杆将关节引出，PIP关节通过四连杆设计方式准确控制弯曲程度，并且进一步通过螺丝之间的干涉再次保证手指不会反向弯曲。  
@@ -100,8 +117,6 @@ ServoDriver.ino 是主程序，```void loop()```是主函数，在这里写的�
   ID[6] = 7;
 ```
 
-
-
 只要有供电，就能在Wifi列表找到ESP32的局域网热点。连接后浏览器访问192.168.4.1可以打开web调试界面。（前提是没有把Wi-Fi相关程序注释或删除）
 
 本程序里在```loop```里增加了串口调试的相关程序，方便开发测试。使用方法是：（设置好开发板环境、波特率等之后）Type-C连接电脑和ESP32，在Arduino右上角打开串口监视器。可以有两种输入：
@@ -128,6 +143,8 @@ case 23: // Open Hand
 ### WEBPAGE.h
 
 WEBPAGE.h 是对Web前端界面的开发。本质是HTML+JavaScript+CSS。  
+
+![WebGUI](./images/WebGUI.png)
 
 要给Web前端开发新功能，想要什么动作方案就在CONNECT.h里的```active Control```函数处添加新case，然后在WEBPAGE.h里调用```toggleCheckbox```函数。（建议从case 30开始，不建议和官方的case重叠覆盖）
 
@@ -157,12 +174,12 @@ WEBPAGE.h 是对Web前端界面的开发。本质是HTML+JavaScript+CSS。
 
 要复现本项目，至少需要这些：
 
-* SC09舵机 单价47元，7个
+* SC09舵机 单价47元，7个，[微雪 SC09串行总线舵机300度转动角度金属齿轮舵机电机双模式切换](https://detail.tmall.com/item.htm?id=714639378997)
 
-* ESP32开发板 单价80元，1个
+* ESP32开发板 单价80元，1个，[微雪 ESP32舵机驱动扩展板 wifi远程控制 蓝牙通信 支持253个舵机](https://detail.tmall.com/item.htm?id=667483395387)
 
-* 鱼眼轴承 单价1.9元，8个
-* 线 单价2.89元，一次10米长
+* 鱼眼轴承 单价1.9元，8个，[气缸鱼眼接头关节轴承向心万向杆端球头SI内丝SA外螺纹连接杆拉杆](https://item.taobao.com/item.htm?id=725305319897)
+* 线 单价2.89元，一次10米长，[304不锈钢钢丝绳 晾衣绳遮阳网包塑钢丝绳 细软小包胶钢丝绳 0.8mm](https://detail.tmall.com/item.htm?id=727898238439)
 
 以上共需要427.09元。
 
