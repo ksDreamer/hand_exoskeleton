@@ -4,7 +4,7 @@
 
 A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.   
 
-低成本手部外骨骼，用连杆驱动四指，用线驱模拟肌腱机制驱动大拇指，主控是ESP32，动力源是七个SC09总线舵机。
+有关低成本的手部外骨骼，用连杆驱动四指，用线驱模拟肌腱机制驱动大拇指，主控是ESP32，动力源是七个SC09总线舵机。可以承载大于20N的负载.
 
 地址项目：https://github.com/ksDreamer/hand_exoskeleton
 
@@ -25,7 +25,7 @@ A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.
 ```git clone https://github.com/ksDreamer/hand_exoskeleton.git```
 
 2. 机械结构的SolidWorks格式模型资源在mechanics文件夹里，需要修改就自行修改。导出零件的.3mf/.stl等3D打印格式文件，经切片软件处理后可以3D打印。如果没接触过3D打印，欢迎阅读作者之前写的3D打印教程：[3D 打印机_拓竹 X1Carbon_操作指南](https://zhuanlan.zhihu.com/p/644491008)
-3. 建议3D打印或者发加工时分模块，例如四指的连杆结构尽量安排临近时间单独打印，拇指的线驱结构也单独打印，避免零件太多混乱不清楚哪个用在哪里。（有空会整理上传.3mf格式，以及组装细节TODO）
+3. 建议3D打印或者发加工时分模块，例如四指的连杆结构尽量安排临近时间单独打印，拇指的线驱结构也单独打印，避免零件太多混乱不清楚哪个用在哪里。
 4. 线驱的安装方式请查看上面的正视图(model_overview.jpg)，有一根线要横穿过四指连杆结构的，因为要从这个方向提供拉力。
 5. 电控和软件相关资源在program文件夹里。需要完整下载ServoDriver文件夹。
 6. 配置ESP32的Arduino开发环境：跟着微雪的[Servo Driver with ESP32用户手册](https://www.waveshare.net/w/upload/d/d6/Servo-Driver-with-ESP32-user-manual-cn.pdf)操作。重要的就是选择Board：ESP32 Dev Module。选择串口（不同电脑的串口号不一定相同），注意Mac电脑的串口不叫COM，通常叫usbserial-0001
@@ -34,12 +34,6 @@ A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.
 9. 设置舵机ID。因为买来新舵机默认ID都是1，所以需要给多个舵机分配不同的ID。通过Web界面的```ID Select+, ID Select-, ID to Set+, ID to Set-```四个按钮，或者手动烧程序来依次设置舵机ID。本项目的ID分配信息如下：大拇指从左往右1、2、3。四指从食指开始为4，小尾指为7。
 10. 机械结构安装完成、电控软件准备完毕后，通常来说不能直接运行。因为每个人的安装时的机械调零、铜柱给进量等等可能不一样。建议用串口调试的方法慢慢测试适合的角度。
 11. 开始玩耍。
-
-TODO：
-
-用Web前端交互可能会出现点击一次触发3下动作的问题，暂时不清楚为何。是多个事件监视器对上一个窗口？还是什么原因。
-
-为稳妥，推荐在问题没找到和解决前用串口控制。
 
 ## Material 材料
 
@@ -81,9 +75,12 @@ TODO：
 
 负载：四指总拉力>20N。
 
+![max_load](images/max_load.png)
+
 与手部贴合的部分采用圆角设计，具有良好的舒适性。
 
 四指穿戴方便，直接往手上套。大拇指需要套环和拉线，会复杂一点。
+
 
 ### 四指——连杆
 
@@ -211,9 +208,13 @@ WEBPAGE.h 是对Web前端界面的开发。本质是HTML+JavaScript+CSS。
 
 这个项目发展下去，想探索的一个大方向是灵巧手。
 
-* 待添加功能：
+* TODO：
+  * ~~DIY电池座的图文攻略（已完成）~~
+  * 整理上传.3mf格式，以及组装细节
+  * 用Web前端交互可能会出现点击一次触发3下动作的问题，暂时不清楚为何。是多个事件监视器对上一个窗口？为稳妥，推荐在问题没找到和解决前用串口控制。
+* 可发展方向：
   * 主从示教（ESP-NOW通信，机械结构优化减小死区）
-  * 摄像头手势识别（match case 已实现，待整理开源TODO。精确随动还要再研究）
+  * 摄像头手势识别（match case 已实现，待整理开源。精确随动还要再研究）
   * 人机交互的优化，例如语音识别输入（STT），语音喇叭模块，网页前端美化（CSS），添加用户开机引导步骤等等。
   * 力反馈和柔性接触抓握。
   * 大语言模型做动作规划（LLM+RAG）
