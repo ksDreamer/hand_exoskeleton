@@ -1,4 +1,4 @@
-# hand_exoskeleton 机械手外骨骼
+# hand_exoskeleton 低成本机械手外骨骼
 
 [toc]
 
@@ -6,9 +6,13 @@ A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.
 
 低成本手部外骨骼，用连杆驱动四指，用线驱模拟肌腱机制驱动大拇指，主控是ESP32，动力源是七个SC09总线舵机。
 
+地址项目：https://github.com/ksDreamer/hand_exoskeleton
+
 ![model_overview](./images/model_overview.jpg)
 
 ![model_overview2](./images/model_overview2.jpg)
+
+![model_overview3](images/model_overview3.jpg)
 
 ## 更新记录：
 
