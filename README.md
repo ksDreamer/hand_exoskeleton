@@ -4,15 +4,13 @@
 
 A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.   
 
-有关低成本的手部外骨骼，用连杆驱动四指，用线驱模拟肌腱机制驱动大拇指，主控是ESP32，动力源是七个SC09总线舵机。可以承载大于20N的负载.
+一个低成本的手部外骨骼，用连杆驱动四指，用线驱模拟肌腱机制驱动大拇指，主控是ESP32，动力源是七个SC09总线舵机，可以承载大于20N的负载。
 
 地址项目：https://github.com/ksDreamer/hand_exoskeleton
 
-![model_overview](./images/model_overview.jpg)
+视频介绍：[[开源] 500块钱的低成本6自由度手部外骨骼_灵巧手_康复手套](https://www.bilibili.com/video/BV1YzUzY8ETY/)
 
-![model_overview2](./images/model_overview2.jpg)
-
-![model_overview3](images/model_overview3.jpg)
+![overview](images/overview.png)
 
 ## 更新记录：
 
@@ -47,7 +45,7 @@ A low-cost hand exoskeleton using linkage and tendon mechanism under ESP32.
 * 电子相关
   * 主控：ESP32 微控制器 * 1 
   * 信号线和串线板（如果采用本项目列出的材料商家，会在每一份舵机包裹里配套这两个）
-  * 供电：查询[微雪ESP32的文档](https://www.waveshare.net/wiki/Servo_Driver_with_ESP32)可得知ESP32板的工作电压为6~12V，接口为5.5*2.1mm DC。查询[微雪SC09 Servo的文档](https://www.waveshare.net/wiki/SC09_Servo)得知SC09舵机的工作电压为4.8~8.4V。因此我们需要：
+  * 供电：查询[微雪ESP32的文档](https://www.waveshare.net/wiki/Servo_Driver_with_ESP32)可得知ESP32板的工作电压为6\~12V，接口为5.5*2.1mm DC。查询[微雪SC09 Servo的文档](https://www.waveshare.net/wiki/SC09_Servo)得知SC09舵机的工作电压为4.8\~8.4V。因此我们需要：
     * 支持**6~8.4V供电**的5521 DC 口电源
     * 或者2节18650电池（3.7v）**串联** + 5521 DC 转接头 + 电池槽（电池座的制作教程已完成，见下图。注意细节：为了绝缘安全可以加上电工绝缘胶带、热塑管之类的，为了避免多次插拔可以接一个电源开关。但一定要注意安全！没有经验的建议上面那个选项，网购一个适合的适配器电源。）
     ![电池座制作教程](images/DIY_Battery_Holder.jpg)
