@@ -12,11 +12,13 @@ A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.
 
 ![overview](images/overview.png)
 
-## 更新记录：
+# News 更新记录
 
 2024-11-16: 完善README，补充细节。DIY电池座的图文攻略已完成。
 
-## Getting Start 复现教程
+2024-11-24: 上传3D打印文件，更新README。
+
+# Getting Start 复现教程
 
 1. 克隆仓库到本地，下载相关资源  ```git clone https://github.com/ksDreamer/hand_exoskeleton.git```
 
@@ -42,7 +44,7 @@ A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.
 
 10. 开始玩耍。
 
-## Material 材料
+# Material 材料
 
 * 机械相关
   * SC09 总线舵机 * 7 
@@ -66,13 +68,13 @@ A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.
   * 设备：支持上传程序的电脑，已在Mac和Windows 上测试可行。ESP32烧录口是Type-C
   * 使用：任一能连接Wi-Fi且具有图形化窗口的设备
 
-## Mechanics 机械介绍
+# Mechanics 机械介绍
 
 ![model_simulation](./images/model_simulation.jpg)
 
 ![model_simulation2](./images/model_simulation2.jpg)
 
-### 基本信息
+## 基本信息
 
 **连杆**与**线驱**结合控制。
 
@@ -88,23 +90,22 @@ A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.
 
 四指穿戴方便，直接往手上套。大拇指需要套环和拉线，会复杂一点。
 
-
-### 四指——连杆
+## 四指——连杆
 
 ![model_finger_equipment](./images/model_finger_equipment.jpg)
 
 传动部分通过**曲柄连杆**与**鱼眼轴承**将水平面内的运动转化为手指的竖直运动，并限制摇杆的行程，保证安全性；
 执行部分每根手指采用八根连杆的系统控制，考虑到MCP关节两侧没有地方穿戴外骨骼，故通过两个平行四边形四连杆将关节引出，PIP关节通过四连杆设计方式准确控制弯曲程度，并且进一步通过螺丝之间的干涉再次保证手指不会反向弯曲。  
 
-### 大拇指——线驱
+## 大拇指——线驱
 
 大拇指通过三个舵机实现两自由度的紧凑灵活过驱动线驱控制。
 
 其中1号舵机和3号舵机控制一个轴的自由度，2号舵机控制水平面垂直另一个轴的自由度。
 
-## Program 程序介绍
+# Program 程序介绍
 
-### 基本信息
+## 基本信息
 
 单舵机控制：```st.WritePos(2, 450, 0,400);``` 第一项2表示舵机ID是2，第二项450表示目标角度为450，第四项400表示转动速度为400。第三项不用管。
 
@@ -118,7 +119,7 @@ A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.
 
 * https://www.waveshare.net/wiki/SC09_Servo
 
-### ServoDriver.ino
+## ServoDriver.ino
 
 ServoDriver.ino 是主程序，```void loop()```是主函数，在这里写的程序只要主控上电就会自动循环执行。
 
@@ -142,7 +143,7 @@ ServoDriver.ino 是主程序，```void loop()```是主函数，在这里写的�
 
 * ```[caseNumber]```格式的动作方案。
 
-### CONNECT.h
+## CONNECT.h
 
 在这里的```activeCtrl```里面的```switch case```添加想要的动作方案。例如case 23是写好了的```Open Hand```函数。
 
@@ -157,7 +158,7 @@ case 23: // Open Hand
 
 此处就可以做很多动作方案和软件开发相关工作了。如果感兴趣可以直接把微雪官方文件拉下来看看和本项目的有什么区别。
 
-### WEBPAGE.h
+## WEBPAGE.h
 
 WEBPAGE.h 是对Web前端界面的开发。本质是HTML+JavaScript+CSS。  
 
@@ -175,7 +176,7 @@ WEBPAGE.h 是对Web前端界面的开发。本质是HTML+JavaScript+CSS。
 
 此处就可以做很多网页前端相关工作了。如果感兴趣可以直接把微雪官方文件拉下来看看和本项目的有什么区别。
 
-### 开发日志Developing Log
+## Developing Log 开发日志
 
 * v0.2 测试得到四指和大拇指2号舵机的合适转动角度，放在Loop主函数里。
 
@@ -187,7 +188,7 @@ WEBPAGE.h 是对Web前端界面的开发。本质是HTML+JavaScript+CSS。
 
 * v1.0 增加三种Speed的选择 100 700 1500 对应case 45 46 47，只改变四指运行速度。简化前端界面。
 
-## 成本
+## Cost 成本
 
 要复现本项目，至少需要这些：
 
@@ -207,11 +208,13 @@ WEBPAGE.h 是对Web前端界面的开发。本质是HTML+JavaScript+CSS。
 
 也就是说，要实现这个项目，在手头有电焊和机械工具的情况下，500元左右能搞定。
 
-## 总结和未来计划
+## Summary and Future Plan 总结和未来计划
 
-因为成本的考虑，这个项目成品的运动精度一般，能指定角度，但精确到0.01度就不可能。有条件的话，会选择更高精度的驱动方案，例如步进电机、无刷直流等等。另外也没有力反馈和传感等功能。
+本项目提供了一个低成本的6自由度手部外骨骼方案，四指部分是连杆传动，拇指是线驱。
 
-这些在各个子领域都有相对成熟的方案了。因此做集成的难度不会很大。（但不是本项目了。舵机和连杆方案在精度和自由度的上限不高，2024-11-16留言）
+因为成本的考虑，这个项目成品的运动精度一般，能指定角度，但无法精确。另外也没有力反馈和传感等功能。
+
+这些在各个子领域都有相对成熟的方案了。因此做集成的难度不会很大。（但不是本项目了。舵机和连杆方案在精度和自由度的上限不高，2024-11-16留言）有条件的话，会选择更高精度的驱动方案，例如步进电机、无刷直流等等。
 
 这个项目发展下去，想探索的一个大方向是灵巧手。
 
@@ -228,7 +231,7 @@ WEBPAGE.h 是对Web前端界面的开发。本质是HTML+JavaScript+CSS。
   * 大语言模型做动作规划（LLM+RAG）
   * 强化学习抓握训练。灵巧手抓取泛化性研究。灵巧手数据生成自监督学习研究。
 
-## 致谢
+## Acknowledgements 致谢
 
 谢谢[Khlann](https://github.com/Khlann)和[cyatar](https://github.com/cyatar)在嵌入式领域提供建议。
 
@@ -236,7 +239,7 @@ WEBPAGE.h 是对Web前端界面的开发。本质是HTML+JavaScript+CSS。
 
 谢谢RobotIC机器人实验室提供了制作过程所需的部分耗材和工具。
 
-### Reference
+# Reference 参考资料
 
 1. Marcin Bonikowski, Mikulás Hajduk, Lucia Koukolova, Wojciech J. Klimasara, Patrycja Mrozek, and Zbigniew Pilat. New trends in the use of robotic devices in motor rehabilitation of upper limbs. In Automation, 2016.
 2. Anirban Chowdhury, Shyam Sunder Nishad, Yogesh Kumar Meena, Ashish Dutta, and Girijesh Prasad. Hand-exoskeleton assisted progressive neurorehabilitation using impedance adaptation based challenge level adjustment method. IEEE Transactions on Haptics, 12:128–140, 2019.
@@ -245,7 +248,7 @@ WEBPAGE.h 是对Web前端界面的开发。本质是HTML+JavaScript+CSS。
 5. https://www.waveshare.net/wiki/Servo_Driver_with_ESP32 
 6. https://www.waveshare.net/wiki/SC09_Servo
 
-### Contributor
+# Contributor 建设者
 
 Mechanics：
 
@@ -262,3 +265,9 @@ Software:
 Report and other work:
 
 ZY, LXH, [Kevin Stark](https://github.com/ksDreamer)
+
+
+
+Thanks for reading this project. You are welcomed to make contributions to this project. If there is any problem, feel free to raise an issue. Contact me via gmy.kevinstark@gmail.com if needed.
+
+感谢阅读本项目，欢迎复现并提出改进建议。如果有任何问题，随时可以提Issue，有需要的话可以通过 gmy.kevinstark@gmail.com 联系我。
