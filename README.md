@@ -20,16 +20,27 @@ A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.
 
 1. 克隆仓库到本地，下载相关资源  ```git clone https://github.com/ksDreamer/hand_exoskeleton.git```
 
-2. 机械结构的SolidWorks格式模型资源在mechanics文件夹里，需要修改就自行修改。导出零件的.3mf/.stl等3D打印格式文件，经切片软件处理后可以3D打印。如果没接触过3D打印，欢迎阅读作者之前写的3D打印教程：[3D 打印机_拓竹 X1Carbon_操作指南](https://zhuanlan.zhihu.com/p/644491008)
-3. 建议3D打印或者发加工时分模块，例如四指的连杆结构尽量安排临近时间单独打印，拇指的线驱结构也单独打印，避免零件太多混乱不清楚哪个用在哪里。
-4. 线驱的安装方式请查看上面的正视图(model_overview.jpg)，有一根线要横穿过四指连杆结构的，因为要从这个方向提供拉力。
-5. 电控和软件相关资源在program文件夹里。需要完整下载ServoDriver文件夹。
-6. 配置ESP32的Arduino开发环境：跟着微雪的[Servo Driver with ESP32用户手册](https://www.waveshare.net/w/upload/d/d6/Servo-Driver-with-ESP32-user-manual-cn.pdf)操作。重要的就是选择Board：ESP32 Dev Module。选择串口（不同电脑的串口号不一定相同），注意Mac电脑的串口不叫COM，通常叫usbserial-0001
-7. 连上ESP32和舵机后，用Type-C口烧录程序。保持供电。
-8. 现在你可以在电脑/手机/平板等智能设备的Wi-Fi列表看到“ESP32_KevinStark"，密码是"88888888"（这些都是你可以自己设置的！），连接后就可以通过局域网访问ESP32 的IP 打开Web前端控制界面了。IP地址通常是`192.168.4.1`。（ESP32支持蓝牙、Wi-Fi、ESP-NOW三种通信方式，ESP-NOW可以做机械手的示教，有空再细写相关内容教程TODO）
-9. 设置舵机ID。因为买来新舵机默认ID都是1，所以需要给多个舵机分配不同的ID。通过Web界面的```ID Select+, ID Select-, ID to Set+, ID to Set-```四个按钮，或者手动烧程序来依次设置舵机ID。本项目的ID分配信息如下：大拇指从左往右1、2、3。四指从食指开始为4，小尾指为7。
-10. 机械结构安装完成、电控软件准备完毕后，通常来说不能直接运行。因为每个人的安装时的机械调零、铜柱给进量等等可能不一样。建议用串口调试的方法慢慢测试适合的角度。
-11. 开始玩耍。
+2. 修改机械结构、开始3D打印。机械结构的资源在`mechanics`文件夹里，包含SolidWorks格式模型（零件是`.SLDPRT`，总装是`_概念总装Assembly.SLDASM`，手的模型文件：`Assy 90.SLDPRT`）和FDM的3D打印文件（零件是`.stl`，总装是`_概念总装Assembly.3mf`），需要修改就自行修改（打印手的模型需缩小到原本的0.9）。
+
+   ![model_in_SW](images/model_in_SW.jpg)
+
+   如图，在SOLIDWORKS里找到手的文件后点击隐藏零部件，从而只显示外骨骼。蓝色是四指部分，绿色是大拇指部分，粉色是底座。黑色是舵机，黄色是铜柱，白色是螺丝、鱼眼轴承、舵盘、舵臂。**只有蓝色、绿色和粉色的文件需要3D打印，已全部整理在`mechanics/FDM_3DPrinting`内**。经切片软件处理后3D打印。如果没接触过3D打印，欢迎阅读作者写的教程：[3D 打印机_拓竹 X1Carbon_操作指南](https://zhuanlan.zhihu.com/p/644491008)。建议3D打印时分批次，例如四指的连杆结构尽量安排临近时间打印，拇指的线驱结构也单独打印，避免零件太多混乱。
+
+3. 组装（TODO）。四指的组装相对简单，拇指线驱有一根线要横穿过四指连杆结构的，因为要从这个方向提供拉力。
+
+4. 电控和软件相关资源在`program`文件夹里，需要完整下载ServoDriver文件夹。
+
+5. 配置ESP32的Arduino开发环境：跟着微雪的[Servo Driver with ESP32用户手册](https://www.waveshare.net/w/upload/d/d6/Servo-Driver-with-ESP32-user-manual-cn.pdf)操作。重要的就是选择Board：ESP32 Dev Module。选择串口（不同电脑的串口号不一定相同），注意Mac电脑的串口不叫COM，通常叫usbserial-0001
+
+6. 连上ESP32和舵机后，用Type-C口烧录程序。保持供电。
+
+7. 现在你可以在电脑/手机/平板等智能设备的Wi-Fi列表看到“ESP32_KevinStark"，密码是"88888888"（这些都是你可以自己设置的！），连接后就可以通过局域网访问ESP32 的IP 打开Web前端控制界面了。IP地址通常是`192.168.4.1`。（ESP32支持蓝牙、Wi-Fi、ESP-NOW三种通信方式，ESP-NOW可以做机械手的示教，有空再细写相关内容教程TODO）
+
+8. 设置舵机ID。因为买来新舵机默认ID都是1，所以需要给多个舵机分配不同的ID。通过Web界面的```ID Select+, ID Select-, ID to Set+, ID to Set-```四个按钮，或者手动烧程序来依次设置舵机ID。本项目的ID分配信息如下：大拇指从左往右1、2、3。四指从食指开始为4，小尾指为7。
+
+9. 机械结构安装完成、电控软件准备完毕后，通常来说不能直接运行。因为每个人的安装时的机械调零、铜柱给进量等等可能不一样。建议用串口调试的方法慢慢**测试适合的角度**。
+
+10. 开始玩耍。
 
 ## Material 材料
 
@@ -39,7 +50,7 @@ A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.
   * M2和M3规格的螺丝和螺母若干，六角螺丝刀，十字螺丝刀。
   * 六角铜柱 *4（内径3.2mm，长度20-38mm不定，与鱼眼轴承给进配合和软件角度配合）
   * 线 0.8mm 
-  * 3D打印（可考虑PLA耗材）
+  * 3D打印（本项目使用的是PLA耗材和Bambu Studio切片软件）
 * 电子相关
   * 主控：ESP32 微控制器 * 1 
   * 信号线和串线板（如果采用本项目列出的材料商家，会在每一份舵机包裹里配套这两个）
@@ -206,7 +217,8 @@ WEBPAGE.h 是对Web前端界面的开发。本质是HTML+JavaScript+CSS。
 
 * TODO：
   * ~~DIY电池座的图文攻略（已完成）~~
-  * 整理上传.3mf格式，以及组装细节
+  * ~~整理上传.3mf格式（已完成）~~
+  * 整理上传组装细节
   * 用Web前端交互可能会出现点击一次触发3下动作的问题，暂时不清楚为何。是多个事件监视器对上一个窗口？为稳妥，推荐在问题没找到和解决前用串口控制。
 * 可发展方向：
   * 主从示教（ESP-NOW通信，机械结构优化减小死区）
