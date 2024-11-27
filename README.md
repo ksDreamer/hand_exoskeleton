@@ -4,7 +4,7 @@
 
 A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.   
 
-一个低成本的手部外骨骼，用连杆驱动四指，用线驱模拟肌腱机制驱动大拇指，主控是ESP32，动力源是七个SC09总线舵机，可以承载大于20N的负载。
+一个约500元低成本6自由度的手部外骨骼，用连杆驱动四指，用线驱模拟肌腱机制驱动大拇指，主控是ESP32，动力源是七个SC09总线舵机，可以承载大于20N的负载。
 
 开源地址：https://github.com/ksDreamer/hand_exoskeleton
 
@@ -18,7 +18,7 @@ A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.
 
 2024-11-24: 上传3D打印文件，更新README。
 
-# Getting Start 复现教程
+# Getting Started 复现教程
 
 1. 克隆仓库到本地，下载相关资源  ```git clone https://github.com/ksDreamer/hand_exoskeleton.git```
 
@@ -36,7 +36,7 @@ A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.
 
 6. 连上ESP32和舵机后，用Type-C口烧录程序。保持供电。
 
-7. 现在你可以在电脑/手机/平板等智能设备的Wi-Fi列表看到“ESP32_KevinStark"，密码是"88888888"（这些都是你可以自己设置的！），连接后就可以通过局域网访问ESP32 的IP 打开Web前端控制界面了。IP地址通常是`192.168.4.1`。（ESP32支持蓝牙、Wi-Fi、ESP-NOW三种通信方式，ESP-NOW可以做机械手的示教，有空再细写相关内容教程TODO）
+7. 现在你可以在电脑/手机/平板等智能设备的Wi-Fi列表看到“ESP32_KevinStark"，密码是"88888888"（这些都是你可以自己设置的！），连接后就可以通过局域网访问ESP32的IP地址，从而打开Web前端控制界面了。IP地址通常是`192.168.4.1`。（ESP32支持蓝牙、Wi-Fi、ESP-NOW三种通信方式，ESP-NOW可以做机械手的示教，有空再细写相关内容教程TODO）
 
 8. 设置舵机ID。因为买来新舵机默认ID都是1，所以需要给多个舵机分配不同的ID。通过Web界面的```ID Select+, ID Select-, ID to Set+, ID to Set-```四个按钮，或者手动烧程序来依次设置舵机ID。本项目的ID分配信息如下：大拇指从左往右1、2、3。四指从食指开始为4，小尾指为7。
 
@@ -52,7 +52,7 @@ A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.
   * M2和M3规格的螺丝和螺母若干，六角螺丝刀，十字螺丝刀。
   * 六角铜柱 *4（内径3.2mm，长度20-38mm不定，与鱼眼轴承给进配合和软件角度配合）
   * 线 0.8mm 
-  * 3D打印（本项目使用的是PLA耗材和Bambu Studio切片软件）
+  * 3D打印（本项目使用的是PLA耗材和[Bambu Studio](https://bambulab.cn/zh-cn/download/studio)切片软件）
 * 电子相关
   * 主控：ESP32 微控制器 * 1 
   * 信号线和串线板（如果采用本项目列出的材料商家，会在每一份舵机包裹里配套这两个）
@@ -65,7 +65,7 @@ A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.
   * （可选）热风枪、热塑管、电源开关
 * 软件
   * 开发：推荐VSCode开发迭代，Arduino烧录
-  * 设备：支持上传程序的电脑，已在Mac和Windows 上测试可行。ESP32烧录口是Type-C
+  * 设备：支持上传程序的电脑，已在Mac和Windows上测试可行。ESP32烧录口是Type-C
   * 使用：任一能连接Wi-Fi且具有图形化窗口的设备
 
 # Mechanics 机械介绍
@@ -238,6 +238,8 @@ WEBPAGE.h 是对Web前端界面的开发。本质是HTML+JavaScript+CSS。
 谢谢lvWei指导焊接并分享技巧。
 
 谢谢RobotIC机器人实验室提供了制作过程所需的部分耗材和工具。
+
+手的模型来自助教，如知晓原出处欢迎告知。
 
 # Reference 参考资料
 
