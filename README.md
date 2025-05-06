@@ -18,6 +18,8 @@ A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.
 
 2024-11-24: 上传3D打印文件，更新README。
 
+2025-05-06: 补充拇指细节
+
 # Getting Started 复现教程
 
 1. 克隆仓库到本地，下载相关资源  ```git clone https://github.com/ksDreamer/hand_exoskeleton.git```
@@ -101,6 +103,8 @@ A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.
 
 大拇指通过三个舵机实现两自由度的紧凑灵活过驱动线驱控制。
 
+![Thumb_1](./images/IMG_1160.jpeg)
+![Thumb_2](./images/IMG_1161.jpeg)
 其中1号舵机和3号舵机控制一个轴的自由度，2号舵机控制水平面垂直另一个轴的自由度。
 
 # Program 程序介绍
