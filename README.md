@@ -1,18 +1,19 @@
 # hand_exoskeleton 低成本机械手外骨骼
 
-[toc]
-
 A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.   
 
 一个约500元低成本6自由度的手部外骨骼，用连杆驱动四指，用线驱模拟肌腱机制驱动大拇指，主控是ESP32，动力源是七个SC09总线舵机，可以承载大于20N的负载。
 
-开源地址：https://github.com/MengyangGao/hand_exoskeleton
+开源：https://github.com/MengyangGao/hand_exoskeleton
 
-视频介绍：[[开源] 500块钱的低成本6自由度手部外骨骼_灵巧手_康复手套](https://www.bilibili.com/video/BV1YzUzY8ETY/)
+视频：[[开源] 500块钱的低成本6自由度手部外骨骼_灵巧手_康复手套](https://www.bilibili.com/video/BV1YzUzY8ETY/)
+
+论文：[A Compact and Lightweight Rigid-Tendon Combined Exoskeleton for Hand Rehabilitation](A_Compact_and_Lightweight_Rigid-Tendon_Combined_Exoskeleton_for_Hand_Rehabilitation.pdf)
 
 ![overview](images/overview.jpg)
 
 # News 更新记录
+2026-06-03: 上传论文。更新文档。
 
 2024-11-16: 完善README，补充细节。DIY电池座的图文攻略已完成。
 
@@ -30,7 +31,7 @@ A low-cost 6DoF hand exoskeleton using linkage and tendon mechanism under ESP32.
 
    如图，在SOLIDWORKS里找到手的文件后点击隐藏零部件，从而只显示外骨骼。蓝色是四指部分，绿色是大拇指部分，粉色是底座。黑色是舵机，黄色是铜柱，白色是螺丝、鱼眼轴承、舵盘、舵臂。**只有蓝色、绿色和粉色的文件需要3D打印，已全部整理在`mechanics/FDM_3DPrinting`内**。经切片软件处理后3D打印。如果没接触过3D打印，欢迎阅读作者写的教程：[3D 打印机_拓竹 X1Carbon_操作指南](https://zhuanlan.zhihu.com/p/644491008)。建议3D打印时分批次，例如四指的连杆结构尽量安排临近时间打印，拇指的线驱结构也单独打印，避免零件太多混乱。
 
-3. 组装（TODO）。四指的组装相对简单，拇指线驱有一根线要横穿过四指连杆结构的，因为要从这个方向提供拉力。
+3. 组装（TODO）。四指的组装相对简单，可参考网友[复现视频：【机械小白组装机械手实况1-物料篇】](https://www.bilibili.com/video/BV1X2Nwz4E5b)。拇指线驱有一根线要横穿过四指连杆结构的，因为要从这个方向提供拉力。
 
 4. 电控和软件相关资源在`program`文件夹里，需要完整下载ServoDriver文件夹。
 
@@ -277,3 +278,13 @@ Yi Zhu, Xuhan Lang, [Mengyang Gao](https://github.com/MengyangGao)
 Thanks for reading this project. You are welcomed to make contributions to this project. If there is any problem, feel free to raise an issue. Contact me via gmy.kevinstark@gmail.com if needed.
 
 感谢阅读本项目，欢迎复现并提出改进建议。如果有任何问题，随时可以提Issue，有需要的话可以通过 gmy.kevinstark@gmail.com 联系我。
+
+## Citation
+If you use this project in your research, please cite:
+```bibtex
+@article{gao2024hand_exoskeleton,
+  title={A Compact and Lightweight Rigid-Tendon Combined Exoskeleton for Hand Rehabilitation},
+  author={Lang, Xuhan and Kang, Haolan and Zhu, Yi and Chen, Jiayu and Zhang, Jianran and Gao, Mengyang},
+  year={2024},
+  note={\url{https://github.com/MengyangGao/hand_exoskeleton}}
+}
